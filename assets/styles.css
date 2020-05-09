@@ -1,4 +1,21 @@
+.wrapper > main {
+    background-color: grey;
+    padding: 1em;
+}
+
+.wrapper > div:nth-child(odd) {
+    background: #ddd;
+}
+
 .wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "header header header header header";
+    grid-gap: 1em;
+}
+
+.item-d {
+    grid-area: header;
 }
