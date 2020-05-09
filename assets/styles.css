@@ -12,10 +12,10 @@
     grid-template-columns: 1fr 3fr;
     grid-template-rows: auto;
     grid-template-areas:
-    "header header header header header";
+    "form form form";
     grid-gap: 1em;
 }
 
 .item-d {
-    grid-area: header;
+    grid-area: form;
 }
