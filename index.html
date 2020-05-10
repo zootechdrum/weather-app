@@ -5,17 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/2ff8675cf4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/styles.css">
-    <title>Document</title>
+    <title>Weather App with CSS Grid</title>
 </head>
 <body>
     <div class="wrapper">
-        <header class="item-d">
+        <header class="header">
+            <h1>Weather with CSS Grid</h1>
             <div class="search">
-                <input type="text" class="searchTerm" placeholder="Search City for current weather">
-                <button type="submit" class="searchButton"><i class="fa fa-search"></i></button>
+                <input id="search-input" type="text" class="searchTerm" placeholder="Search City for current weather">
+                <button id="search-btn" type="submit" class="searchButton"><i class="fa fa-search"></i></button>
             </div>
         </header>
 
+        <aside class="past-city">
+            <div>San Gabriel</div>
+            <div>San Gabriel</div>
+        </aside>
+        <!-- History for previous searched cities. -->
         <main>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
              Tenetur esse consectetur sunt repellat in voluptatem soluta a
@@ -24,17 +30,8 @@
              saepe non eveniet rerum laboriosam possimus ex ipsa obcaecati, itaque ab dolore, odio eum pariatur veritatis hic alias vel consectetur. Earum, et? Laudantium voluptatem est molestiae eaque possimus quisquam alias recusandae facilis, a expedita, atque nostrum veniam natus.
              Consectetur omnis, asperiores vitae eveniet illo laudantium laborum quam?
         </main>
-        <!-- History for previous searched cities. -->
-        <aside>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-             Tenetur esse consectetur sunt repellat in voluptatem soluta a
-              molestias laboriosam, iusto suscipit enim, nulla repellendus 
-              architecto dolorem iure voluptate eos. Qui id culpa natus, 
-             saepe non eveniet rerum laboriosam possimus ex ipsa obcaecati, itaque ab dolore, odio eum pariatur veritatis hic alias vel consectetur. Earum, et? Laudantium voluptatem est molestiae eaque possimus quisquam alias recusandae facilis, a expedita, atque nostrum veniam natus.
-             Consectetur omnis, asperiores vitae eveniet illo laudantium laborum quam?
-        </aside>
     </div>
-
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
     <script src="./assets/script.js" ></script>
 </body>
 </html>

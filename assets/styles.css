@@ -12,12 +12,16 @@
     grid-template-columns: 1fr 3fr;
     grid-template-rows: auto;
     grid-template-areas:
-    "form form form";
+    "header header header";
     grid-gap: 1em;
 }
 
-.item-d {
-    grid-area: form;
+h1{
+     text-align: center;
+}
+
+.header {
+    grid-area: header;
 }
 
 /* style for search box */
@@ -52,4 +56,8 @@
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     font-size: 20px;
+  }
+
+  .past-city{
+      background-color: #EDF5E1;
   }
