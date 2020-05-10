@@ -17,6 +17,10 @@ $("#search-btn").click(()=> {
 
 })
 
+const getCurrentWeather = (cityName: string) => {
+
+};
+
 const getForecast = (cityName: string) => {
 
     const URL = "https://api.openweathermap.org/data/2.5/forecast?q=riverside&&appid=eb24ebd17a4375e8ec365a3eba5592a2"
