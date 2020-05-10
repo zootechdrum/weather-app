@@ -2,7 +2,11 @@ $(document).ready(() => {
 //GET THE VALUE OF INPUT BOX
  
 $("#search-btn").click(()=> {
-    const str = $("#search-input").val().trim()
+
+    const str = $("#search-input").val() as string
+    //Use Regex to replace white space in string
+    str.replace(/\s/g, "")
+
     //Create Div element
     const div = $("<div>")
     const city = div.append(str)
@@ -13,7 +17,7 @@ $("#search-btn").click(()=> {
 
 })
 
-const getForecast = (cityName) => {
+const getForecast = (cityName: string) => {
 
     const URL = "https://api.openweathermap.org/data/2.5/forecast?q=riverside&&appid=eb24ebd17a4375e8ec365a3eba5592a2"
 
