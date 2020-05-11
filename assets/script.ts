@@ -48,8 +48,9 @@ const currentWeather = (cityName: string) => {
 
 const displayWeather = ( items: {city:string, humidity: number, windSpeed: number}) => {
     
-    const h2 = $("<h2>").append(items.city)
-     $("#current-weather").html(h2)
+    const h2: JQuery<HTMLElement> = $("<h2>") 
+    const city : JQuery<HTMLElement> = h2.append(items.city) 
+    $("#current-weather").replaceWith(city)
     
 
 }
