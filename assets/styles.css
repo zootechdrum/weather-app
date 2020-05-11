@@ -60,4 +60,16 @@ h1{
 
   .past-city{
       background-color: #EDF5E1;
+      border:1px solid black;
+  }
+
+  .city-name{
+    padding:10px 5px 10px 5px;
+    font-size: 1.1em;; 
+  }
+
+  .city-name:not(:last-child){
+      padding:10px 5px 10px 5px;
+      border-bottom:1px solid black;
+      font-size: 1.1em;;
   }
