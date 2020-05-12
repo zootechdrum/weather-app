@@ -63,10 +63,17 @@ const getUvIndex = (coordinates: {lat:number, lon: number}) => {
     const lat = coordinates.lat.toString()
     const lon = coordinates.lat.toString()
 
-    const URL = `https:api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}}&&appid=eb24ebd17a4375e8ec365a3eba5592a2`;
+    const URL = `https://api.openweathermap.org/data/2.5/uvi?&appid=eb24ebd17a4375e8ec365a3eba5592a2&${coordinates.lat}=37.75&lon=-122.37`;
 
     $.ajax({url: URL, success: function(result){
-        console.log(result)
+        const uvIndex = result.value.toString()
+
+        const uvIndexTxt = $("<p></p>").text(uvIndex)
+
+        
+        
+
+
         }
     })      
         //items that will be in current-weather div

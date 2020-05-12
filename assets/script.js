@@ -41,9 +41,10 @@ $(document).ready(function () {
     var getUvIndex = function (coordinates) {
         var lat = coordinates.lat.toString();
         var lon = coordinates.lat.toString();
-        var URL = "https:api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon;
+        var URL = "https://api.openweathermap.org/data/2.5/uvi?&appid=eb24ebd17a4375e8ec365a3eba5592a2&" + coordinates.lat + "=37.75&lon=-122.37";
         $.ajax({ url: URL, success: function (result) {
-                console.log(result);
+                var uvIndex = result.value.toString();
+                var uvIndexTxt = $("<p></p>").text(uvIndex);
             }
         });
         //items that will be in current-weather div
