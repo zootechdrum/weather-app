@@ -13,19 +13,11 @@ $("#search-btn").click(() => {
     //append city to the aside div in grid
     $(".past-city").append(city)
 
+
+
     currentWeather(str);
 
 })
-
-// const getCurrentWeather = (cityName: string) => {
-
-//     const URL = "https:api.openweathermap.org/data/2.5/weather?q=riverside&appid=eb24ebd17a4375e8ec365a3eba5592a2";
-
-//     $.ajax({url: URL, success: function(result){
-//         console.log(result)
-//       }});
-
-// };
 
 const currentWeather = (cityName: string) => {
 
@@ -33,8 +25,6 @@ const currentWeather = (cityName: string) => {
 
     $.ajax({url: URL, success: function(result){
         //items that will be in current-weather div
-        console.log(result)
-
         const weatherItems = {
             city: cityName,
             humidity: result.main.humidity,
@@ -42,17 +32,44 @@ const currentWeather = (cityName: string) => {
         }
 
         displayWeather(weatherItems)
+        getUvIndex(result.coord)
 
       }});
 }
 
 const displayWeather = ( items: {city:string, humidity: number, windSpeed: number}) => {
     
+    //Replace everythin inside of current weather div
+
+    $("#current-weather").empty()
+    //Display the current city in current weather box
     const h2: JQuery<HTMLElement> = $("<h2>") 
     const city : JQuery<HTMLElement> = h2.append(items.city) 
-    $("#current-weather").replaceWith(city)
-    
+    $("#current-weather").append(city)
 
+    
+    const wind = items.windSpeed.toString();
+    const hdty = items.humidity.toString()
+
+    const windTxt = $("<p></p>").text("Wind Speed: " + wind)
+    const humidityTxt = $("<p></p>").text("Humidity: " + hdty)
+
+    $("#current-weather").append(windTxt)
+    $("#current-weather").append(humidityTxt)
+}
+
+const getUvIndex = (coordinates: {lat:number, lon: number}) => {
+    
+    const lat = coordinates.lat.toString()
+    const lon = coordinates.lat.toString()
+
+    const URL = `https:api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}}&&appid=eb24ebd17a4375e8ec365a3eba5592a2`;
+
+    $.ajax({url: URL, success: function(result){
+        console.log(result)
+        }
+    })      
+        //items that will be in current-weather div
 }
 
 });
