@@ -66,6 +66,9 @@ h1{
       border:1px solid black;
   }
 
+  h2{
+      letter-spacing: 2px;;
+  }
   .city-name{
     padding:10px 5px 10px 5px;
     font-size: 1.1em;; 
@@ -100,4 +103,10 @@ h1{
 
 .extreme {
     background: #B973FF;
+}
+
+.uv-index{
+    padding:5px;
+    border-radius: 3px;
+    letter-spacing: 2px;
 }

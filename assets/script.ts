@@ -43,8 +43,8 @@ const displayWeather = ( items: {city:string, humidity: number, windSpeed: numbe
 
     $("#current-weather").empty()
     //Display the current city in current weather box
-    const h2: JQuery<HTMLElement> = $("<h2>") 
-    const city : JQuery<HTMLElement> = h2.append(items.city) 
+    const h2: JQuery<HTMLElement> = $("<h2 class='city'>") 
+    const city : JQuery<HTMLElement> = h2.append(items.city.toUpperCase()) 
     $("#current-weather").append(city)
 
     
@@ -66,12 +66,13 @@ const getUvIndex = (coordinates: {lat:number, lon: number}) => {
     const URL = `https://api.openweathermap.org/data/2.5/uvi?&appid=eb24ebd17a4375e8ec365a3eba5592a2&lat=${coordinates.lat}&lon=${coordinates.lat}`;
 
     $.ajax({url: URL, success: function(result){
+
         const uvIndex = Math.round(result.value)
-        console.log(uvIndex)
 
         const uvIndexTxt = $("<p></p>")
+        uvIndexTxt.addClass("uv-index")
 
-
+//Applies appropriate classes based on the intensity of the UV rays.
         if(uvIndex => 11) {
             uvIndexTxt.addClass("extreme");
             uvIndexTxt.text("UV Index: " + uvIndex + " (Extreme Risk)");
@@ -92,8 +93,6 @@ const getUvIndex = (coordinates: {lat:number, lon: number}) => {
 
 
         $("#current-weather").append(uvIndexTxt)
-
-        
 
         }
     })      
