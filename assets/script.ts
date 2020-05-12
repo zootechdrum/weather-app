@@ -63,16 +63,37 @@ const getUvIndex = (coordinates: {lat:number, lon: number}) => {
     const lat = coordinates.lat.toString()
     const lon = coordinates.lat.toString()
 
-    const URL = `https://api.openweathermap.org/data/2.5/uvi?&appid=eb24ebd17a4375e8ec365a3eba5592a2&${coordinates.lat}=37.75&lon=-122.37`;
+    const URL = `https://api.openweathermap.org/data/2.5/uvi?&appid=eb24ebd17a4375e8ec365a3eba5592a2&lat=${coordinates.lat}&lon=${coordinates.lat}`;
 
     $.ajax({url: URL, success: function(result){
-        const uvIndex = result.value.toString()
+        const uvIndex = Math.round(result.value)
+        console.log(uvIndex)
 
-        const uvIndexTxt = $("<p></p>").text(uvIndex)
+        const uvIndexTxt = $("<p></p>")
+
+
+        if(uvIndex => 11) {
+            uvIndexTxt.addClass("extreme");
+            uvIndexTxt.text("UV Index: " + uvIndex + " (Extreme Risk)");
+        }else if(uvIndex >= 8 ){
+            uvIndexTxt.addClass("v-high");
+            uvIndexTxt.text("UV Index: " + uvIndex + " (Very High Risk)");
+        }else if(uvIndex >= 6 ){
+            uvIndexTxt.addClass("high");
+            uvIndexTxt.text("UV Index: " + uvIndex + " (High Risk)");
+        }else if(uvIndex >= 3 ){
+            uvIndexTxt.addClass("moderate");
+            uvIndexTxt.text("UV Index: " + uvIndex + " (Moderate Risk)");
+        }else if(uvIndex >= 0 ){
+            uvIndexTxt.addClass("low");
+            uvIndexTxt.text("UV Index: " + uvIndex + " (Low Risk)");
+        }
+
+
+
+        $("#current-weather").append(uvIndexTxt)
 
         
-        
-
 
         }
     })      

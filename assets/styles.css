@@ -80,3 +80,24 @@ h1{
   #current-weather{
       min-height: 300px;
   }
+
+  /* style for the uvIndex div */
+
+  .low{
+    background:#04bf30
+  }
+  .moderate{
+    background:#e6d307
+  }
+
+  .high{
+      background:#e66f07;
+}
+
+.v-high{
+    background: #d12e11;
+}
+
+.extreme {
+    background: #B973FF;
+}

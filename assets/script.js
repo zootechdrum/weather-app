@@ -41,10 +41,32 @@ $(document).ready(function () {
     var getUvIndex = function (coordinates) {
         var lat = coordinates.lat.toString();
         var lon = coordinates.lat.toString();
-        var URL = "https://api.openweathermap.org/data/2.5/uvi?&appid=eb24ebd17a4375e8ec365a3eba5592a2&" + coordinates.lat + "=37.75&lon=-122.37";
+        var URL = "https://api.openweathermap.org/data/2.5/uvi?&appid=eb24ebd17a4375e8ec365a3eba5592a2&lat=" + coordinates.lat + "&lon=" + coordinates.lat;
         $.ajax({ url: URL, success: function (result) {
-                var uvIndex = result.value.toString();
-                var uvIndexTxt = $("<p></p>").text(uvIndex);
+                var uvIndex = Math.round(result.value);
+                console.log(uvIndex);
+                var uvIndexTxt = $("<p></p>");
+                if (function (uvIndex) { return 11; }) {
+                    uvIndexTxt.addClass("extreme");
+                    uvIndexTxt.text("UV Index: " + uvIndex + " (Extreme Risk)");
+                }
+                else if (uvIndex >= 8) {
+                    uvIndexTxt.addClass("v-high");
+                    uvIndexTxt.text("UV Index: " + uvIndex + " (Very High Risk)");
+                }
+                else if (uvIndex >= 6) {
+                    uvIndexTxt.addClass("high");
+                    uvIndexTxt.text("UV Index: " + uvIndex + " (High Risk)");
+                }
+                else if (uvIndex >= 3) {
+                    uvIndexTxt.addClass("moderate");
+                    uvIndexTxt.text("UV Index: " + uvIndex + " (Moderate Risk)");
+                }
+                else if (uvIndex >= 0) {
+                    uvIndexTxt.addClass("low");
+                    uvIndexTxt.text("UV Index: " + uvIndex + " (Low Risk)");
+                }
+                $("#current-weather").append(uvIndexTxt);
             }
         });
         //items that will be in current-weather div
