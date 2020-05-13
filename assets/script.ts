@@ -62,10 +62,15 @@ const forecast = (cityName: string) => {
     
     const URL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&&appid=eb24ebd17a4375e8ec365a3eba5592a2`
 
-    let forecastArr = [];
+
 
     $.ajax({url: URL, success: function(result){
-        console.log(result)
+
+        const foreCastData = result.list
+
+        for(let i = 2; i <= foreCastData.length; i = i + 8){
+            console.log(foreCastData[i])
+        }
        }
     })
 }

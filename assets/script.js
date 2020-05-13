@@ -42,7 +42,10 @@ $(document).ready(function () {
     var forecast = function (cityName) {
         var URL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&&appid=eb24ebd17a4375e8ec365a3eba5592a2";
         $.ajax({ url: URL, success: function (result) {
-                console.log(result);
+                var foreCastData = result.list;
+                for (var i = 2; i <= foreCastData.length; i = i + 8) {
+                    console.log(foreCastData[i]);
+                }
             }
         });
     };
