@@ -3,25 +3,25 @@ $(document).ready(() => {
  
 $("#search-btn").click(() => {
 
-    const str = $("#search-input").val() as string
+    const cityName = $("#search-input").val() as string
     //Use Regex to replace white space in string
-    str.replace(/\s/g, "")
+    cityName.replace(/\s/g, "")
 
     //Create Div element
     const div = $("<div class='city-name'>")
-    const city = div.append(str)
+    const city = div.append(cityName)
     //append city to the aside div in grid
     $(".past-city").append(city)
 
-
-
-    currentWeather(str);
+    currentWeather(cityName);
+    forecast(cityName)
 
 })
 
 const currentWeather = (cityName: string) => {
 
-    const URL = `https:api.openweathermap.org/data/2.5/weather?q=${cityName}&&appid=eb24ebd17a4375e8ec365a3eba5592a2`
+   const URL = `https:api.openweathermap.org/data/2.5/weather?q=${cityName}&&appid=eb24ebd17a4375e8ec365a3eba5592a2`
+    
 
     $.ajax({url: URL, success: function(result){
         //items that will be in current-weather div
@@ -58,6 +58,18 @@ const displayWeather = ( items: {city:string, humidity: number, windSpeed: numbe
     $("#current-weather").append(humidityTxt)
 }
 
+const forecast = (cityName: string) => {
+    
+    const URL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&&appid=eb24ebd17a4375e8ec365a3eba5592a2`
+
+    let forecastArr = [];
+
+    $.ajax({url: URL, success: function(result){
+        console.log(result)
+       }
+    })
+}
+
 const getUvIndex = (coordinates: {lat:number, lon: number}) => {
     
     const lat = coordinates.lat.toString()
@@ -89,14 +101,10 @@ const getUvIndex = (coordinates: {lat:number, lon: number}) => {
             uvIndexTxt.addClass("low");
             uvIndexTxt.text("UV Index: " + uvIndex + " (Low Risk)");
         }
-
-
-
         $("#current-weather").append(uvIndexTxt)
 
         }
     })      
-        //items that will be in current-weather div
 }
 
 });
