@@ -1,4 +1,5 @@
 $(document).ready(() => {
+    console.log(moment().format('LL'))
 //GET THE VALUE OF INPUT BOX
  
 $("#search-btn").click(() => {
@@ -44,7 +45,7 @@ const displayWeather = ( items: {city:string, humidity: number, windSpeed: numbe
     $("#current-weather").empty()
     //Display the current city in current weather box
     const h2: JQuery<HTMLElement> = $("<h2 class='city'>") 
-    const city : JQuery<HTMLElement> = h2.append(items.city.toUpperCase()) 
+    const city : JQuery<HTMLElement> = h2.append(items.city.toUpperCase() + ": " +  moment().format('LL')) 
     $("#current-weather").append(city)
 
     
@@ -113,4 +114,3 @@ const getUvIndex = (coordinates: {lat:number, lon: number}) => {
 }
 
 });
-

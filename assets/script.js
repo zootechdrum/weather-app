@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    console.log(moment().format('LL'));
     //GET THE VALUE OF INPUT BOX
     $("#search-btn").click(function () {
         var cityName = $("#search-input").val();
@@ -30,7 +31,7 @@ $(document).ready(function () {
         $("#current-weather").empty();
         //Display the current city in current weather box
         var h2 = $("<h2 class='city'>");
-        var city = h2.append(items.city.toUpperCase());
+        var city = h2.append(items.city.toUpperCase() + ": " + moment().format('LL'));
         $("#current-weather").append(city);
         var wind = items.windSpeed.toString();
         var hdty = items.humidity.toString();
