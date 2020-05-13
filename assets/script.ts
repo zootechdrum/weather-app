@@ -1,4 +1,8 @@
+import moment = require('moment');
+
+
 $(document).ready(() => {
+
     console.log(moment().format('LL'))
 //GET THE VALUE OF INPUT BOX
  
