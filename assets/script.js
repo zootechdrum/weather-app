@@ -1,6 +1,5 @@
 // import moment = require('moment');
 $(document).ready(function () {
-    console.log(moment().format('LL'));
     //GET THE VALUE OF INPUT BOX
     $("#search-btn").click(function () {
         var cityName = $("#search-input").val();
@@ -17,8 +16,10 @@ $(document).ready(function () {
     var currentWeather = function (cityName) {
         var URL = "https:api.openweathermap.org/data/2.5/weather?q=" + cityName + "&&appid=eb24ebd17a4375e8ec365a3eba5592a2";
         $.ajax({ url: URL, success: function (result) {
+                console.log(result);
                 //items that will be in current-weather div
                 var weatherItems = {
+                    temp: result.main.temp,
                     city: cityName,
                     humidity: result.main.humidity,
                     windSpeed: result.wind.speed
@@ -34,10 +35,13 @@ $(document).ready(function () {
         var h2 = $("<h2 class='city'>");
         var city = h2.append(items.city.toUpperCase() + ": " + moment().format('LL'));
         $("#current-weather").append(city);
+        var temp = Math.floor(1.8 * (items.temp - 273) + 32).toString();
         var wind = items.windSpeed.toString();
         var hdty = items.humidity.toString();
+        var tempTxt = $("<p></p>").text("Temp: " + temp);
         var windTxt = $("<p></p>").text("Wind Speed: " + wind);
         var humidityTxt = $("<p></p>").text("Humidity: " + hdty);
+        $("#current-weather").append(tempTxt);
         $("#current-weather").append(windTxt);
         $("#current-weather").append(humidityTxt);
     };
@@ -47,14 +51,26 @@ $(document).ready(function () {
                 var foreCastData = result.list;
                 //A array full of objects that will hold forecasted data
                 var foreCast = [];
+                var temp;
+                var humidity;
                 //Gets afternoon data for the next 5 days
                 for (var i = 2; i <= foreCastData.length; i = i + 8) {
                     foreCast.push(foreCastData[i]);
                 }
                 for (var j = 0; j < foreCast.length; j++) {
+                    var weatherCont = $("#forecast-card-container");
                     var weatherCard = $("<div class='weather-card'>");
-                    var temp = Math.floor(1.8 * (foreCast[j].main.temp - 273) + 32);
-                    console.log(temp);
+                    var day = moment(foreCast[j].dt_txt.split(" ")[0]).format('dddd');
+                    //Gets the value for temp while also converting Kelvin to Faren
+                    temp = Math.floor(1.8 * (foreCast[j].main.temp - 273) + 32).toString();
+                    humidity = foreCast[j].main.humidity.toString();
+                    var dayTxt = $("<h4></h4>").text(day);
+                    var tempTxt = $("<p></p>").text("Temp: " + temp);
+                    var humidTxt = $("<p></p>").text("Humidity: " + humidity + "%");
+                    weatherCard.append(dayTxt);
+                    weatherCard.append(tempTxt);
+                    weatherCard.append(humidTxt);
+                    weatherCont.append(weatherCard);
                 }
             }
         });
