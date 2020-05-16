@@ -73,9 +73,13 @@ const forecast = (cityName: string) => {
 
         const foreCastData = result.list
 
+        const foreCast = [];
+
+        //Gets afternoon data for the next 5 days
         for(let i = 2; i <= foreCastData.length; i = i + 8){
-            console.log(foreCastData[i])
+            foreCast.push(foreCastData[i])
         }
+        console.log(foreCast)
        }
     })
 }

@@ -1,3 +1,4 @@
+// import moment = require('moment');
 $(document).ready(function () {
     console.log(moment().format('LL'));
     //GET THE VALUE OF INPUT BOX
@@ -44,9 +45,12 @@ $(document).ready(function () {
         var URL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&&appid=eb24ebd17a4375e8ec365a3eba5592a2";
         $.ajax({ url: URL, success: function (result) {
                 var foreCastData = result.list;
+                var foreCast = [];
+                //Gets afternoon data for the next 5 days
                 for (var i = 2; i <= foreCastData.length; i = i + 8) {
-                    console.log(foreCastData[i]);
+                    foreCast.push(foreCastData[i]);
                 }
+                console.log(foreCast);
             }
         });
     };
