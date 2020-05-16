@@ -60,7 +60,7 @@ const displayWeather = ( items: {city:string, humidity: number, windSpeed: numbe
     const wind = items.windSpeed.toString();
     const hdty = items.humidity.toString()
 
-    const tempTxt = $("<p></p>").text("Temp: " + temp)
+    const tempTxt = $("<p></p>").text("Temp: " + temp+String.fromCharCode(176))
     const windTxt = $("<p></p>").text("Wind Speed: " + wind)
     const humidityTxt = $("<p></p>").text("Humidity: " + hdty)
 
@@ -76,6 +76,9 @@ const forecast = (cityName: string) => {
 
 
     $.ajax({url: URL, success: function(result){
+
+        //Clear all of the content from previous searches
+        $("#forecast-card-container").empty()
 
         const foreCastData = result.list
 

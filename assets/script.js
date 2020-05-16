@@ -38,7 +38,7 @@ $(document).ready(function () {
         var temp = Math.floor(1.8 * (items.temp - 273) + 32).toString();
         var wind = items.windSpeed.toString();
         var hdty = items.humidity.toString();
-        var tempTxt = $("<p></p>").text("Temp: " + temp);
+        var tempTxt = $("<p></p>").text("Temp: " + temp + String.fromCharCode(176));
         var windTxt = $("<p></p>").text("Wind Speed: " + wind);
         var humidityTxt = $("<p></p>").text("Humidity: " + hdty);
         $("#current-weather").append(tempTxt);
@@ -48,6 +48,8 @@ $(document).ready(function () {
     var forecast = function (cityName) {
         var URL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&&appid=eb24ebd17a4375e8ec365a3eba5592a2";
         $.ajax({ url: URL, success: function (result) {
+                //Clear all of the content from previous searches
+                $("#forecast-card-container").empty();
                 var foreCastData = result.list;
                 //A array full of objects that will hold forecasted data
                 var foreCast = [];
