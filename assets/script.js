@@ -45,12 +45,17 @@ $(document).ready(function () {
         var URL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&&appid=eb24ebd17a4375e8ec365a3eba5592a2";
         $.ajax({ url: URL, success: function (result) {
                 var foreCastData = result.list;
+                //A array full of objects that will hold forecasted data
                 var foreCast = [];
                 //Gets afternoon data for the next 5 days
                 for (var i = 2; i <= foreCastData.length; i = i + 8) {
                     foreCast.push(foreCastData[i]);
                 }
-                console.log(foreCast);
+                for (var j = 0; j < foreCast.length; j++) {
+                    var weatherCard = $("<div class='weather-card'>");
+                    var temp = Math.floor(1.8 * (foreCast[j].main.temp - 273) + 32);
+                    console.log(temp);
+                }
             }
         });
     };

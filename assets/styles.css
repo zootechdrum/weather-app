@@ -119,7 +119,7 @@ h1{
 }
 
 .weather-card{
-    padding: 7px;;
+    padding: 0px 10px;
     background-color: #00B4CC;
     border-radius: 3px;
 }
