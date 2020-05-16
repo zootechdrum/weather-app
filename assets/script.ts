@@ -5,6 +5,12 @@ $(document).ready(() => {
 
    
 //GET THE VALUE OF INPUT BOX
+
+$('#search-input').keypress(function(e){
+    if(e.which == 13){//Enter key pressed
+        $("#search-btn").click()
+    }
+});
  
 $("#search-btn").click(() => {
 
