@@ -1,6 +1,5 @@
 .wrapper > main {
-    background-color: grey;
-    padding: 1em;
+
 }
 
 .wrapper > div:nth-child(odd) {
@@ -81,7 +80,9 @@ h1{
   }
 
   #current-weather{
-      min-height: 250px;
+    background-color: grey;
+    padding: 1em;
+    min-height: 250px;
   }
 
   /* style for the uvIndex div */
@@ -109,4 +110,16 @@ h1{
     padding:5px;
     border-radius: 3px;
     letter-spacing: 2px;
+}
+
+/* Weather forecast section */
+.forecast-card-container{
+    display:flex;
+    justify-content: space-around;
+}
+
+.weather-card{
+    padding: 7px;;
+    background-color: #00B4CC;
+    border-radius: 3px;
 }

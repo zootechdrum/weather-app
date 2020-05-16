@@ -19,5 +19,8 @@
   "homepage": "https://github.com/zootechdrum/weather-app#readme",
   "devDependencies": {
     "@types/jquery": "^3.3.38"
+  },
+  "dependencies": {
+    "moment": "^2.25.3"
   }
 }
