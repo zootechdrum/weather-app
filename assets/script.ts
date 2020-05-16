@@ -1,4 +1,4 @@
-// import moment = require('moment');
+import moment = require('moment');
 
 
 $(document).ready(() => {
@@ -76,6 +76,8 @@ const forecast = (cityName: string) => {
         //A array full of objects that will hold forecasted data
         const foreCast = [];
 
+        let temp : string;
+
         //Gets afternoon data for the next 5 days
         for(let i = 2; i <= foreCastData.length; i = i + 8){
             foreCast.push(foreCastData[i])
@@ -84,7 +86,7 @@ const forecast = (cityName: string) => {
         for(let j = 0; j < foreCast.length; j++){
             const weatherCard = $("<div class='weather-card'>");
             //Gets the value for temp while also converting Kelvin to Faren
-            const temp = Math.floor(1.8 * (foreCast[j].main.temp - 273) + 32);
+             temp = Math.floor(1.8 * (foreCast[j].main.temp - 273) + 32).toString();
             console.log(temp)
         }
         
