@@ -34,7 +34,8 @@ $(document).ready(function () {
                 displayWeather(weatherItems);
                 getUvIndex(result.coord);
             }, error: function (status) {
-                return displayModal();
+                displayModal();
+                $('.past-city').children().last().remove();
             }
         });
     };
