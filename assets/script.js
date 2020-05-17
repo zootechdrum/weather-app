@@ -1,5 +1,7 @@
 // import moment = require('moment');
+var _this = this;
 $(document).ready(function () {
+    var modal = $("#myModal");
     //GET THE VALUE OF INPUT BOX
     $('#search-input').keypress(function (e) {
         if (e.which == 13) { //Enter key pressed
@@ -31,11 +33,13 @@ $(document).ready(function () {
                 };
                 displayWeather(weatherItems);
                 getUvIndex(result.coord);
-            } });
+            }, error: function (status) {
+                return displayModal();
+            }
+        });
     };
     var getWeatherIcon = function (id) {
         if (id >= 800) {
-            console.log("hello");
             return 'http://openweathermap.org/img/wn/01d@2x.png';
         }
         else if (id <= 781 || id >= 701) {
@@ -92,7 +96,6 @@ $(document).ready(function () {
                     foreCast.push(foreCastData[i]);
                 }
                 for (var j = 0; j < foreCast.length; j++) {
-                    console.log(foreCast);
                     var weatherCont = $("#forecast-card-container");
                     var weatherCard = $("<div class='weather-card'>");
                     var day = moment(foreCast[j].dt_txt.split(" ")[0]).format('dddd');
@@ -118,7 +121,7 @@ $(document).ready(function () {
         var URL = "https://api.openweathermap.org/data/2.5/uvi?&appid=eb24ebd17a4375e8ec365a3eba5592a2&lat=" + coordinates.lat + "&lon=" + coordinates.lat;
         $.ajax({ url: URL, success: function (result) {
                 var uvIndex = Math.round(result.value);
-                var uvIndexTxt = $("<p></p>");
+                var uvIndexTxt = $("<span></span>");
                 uvIndexTxt.addClass("uv-index");
                 //Applies appropriate classes based on the intensity of the UV rays.
                 if (function (uvIndex) { return 11; }) {
@@ -145,4 +148,13 @@ $(document).ready(function () {
             }
         });
     };
+    var displayModal = function () {
+        modal.show();
+    };
+    //Gets rid of Modal 
+    $(_this).on("click", function (e) {
+        if (modal.show()) {
+            modal.hide();
+        }
+    });
 });

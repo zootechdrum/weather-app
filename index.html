@@ -8,6 +8,19 @@
     <title>Weather App with CSS Grid</title>
 </head>
 <body>
+
+    <!-- Modal Content -->
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Can't find the city</p>
+    </div>
+  
+  </div>
+
     <div class="wrapper">
         <header class="header">
             <h1>Weather with CSS Grid</h1>
@@ -23,19 +36,11 @@
         
         <main>
             <div id="current-weather" class="current-weather">
-                <h2>Austin (5/10/2020) </h2>
-                <p>Cesar</p>
             </div>
             <!-- forecasted weather for the week -->
             <div class="forcast-weather">
                 <h3>5 Day Forecast :</h3>
                 <div id = "forecast-card-container" class="forecast-card-container">
-                    <!-- <div class="weather-card">
-                        <h5>Riverside</h5>
-                        <p>Temp: 86F</p>
-                        <p>Humidity: 43%</p>
-                    </div> -->
-
                 </div>
             </div>
         </main>

@@ -3,6 +3,7 @@
 
 $(document).ready(() => {
 
+const modal = $("#myModal")
    
 //GET THE VALUE OF INPUT BOX
 
@@ -47,12 +48,14 @@ const currentWeather = (cityName: string) => {
         displayWeather(weatherItems)
         getUvIndex(result.coord)
 
-      }});
+      },error: function(status){
+        return displayModal()
+      }
+    });
 }
 
 const getWeatherIcon = (id: number) => {
     if(id >= 800){
-        console.log("hello")
         return 'http://openweathermap.org/img/wn/01d@2x.png'
     }else if(id <= 781 || id >= 701){
         return 'http://openweathermap.org/img/wn/50d@2x.png'
@@ -121,8 +124,6 @@ const forecast = (cityName: string) => {
         }
 
         for(let j = 0; j < foreCast.length; j++){
-            console.log(foreCast)
-
 
             const weatherCont = $("#forecast-card-container")
             const weatherCard = $("<div class='weather-card'>");
@@ -160,7 +161,7 @@ const getUvIndex = (coordinates: {lat:number, lon: number}) => {
 
         const uvIndex = Math.round(result.value)
 
-        const uvIndexTxt = $("<p></p>")
+        const uvIndexTxt = $("<span></span>")
         uvIndexTxt.addClass("uv-index")
 
 //Applies appropriate classes based on the intensity of the UV rays.
@@ -185,6 +186,21 @@ const getUvIndex = (coordinates: {lat:number, lon: number}) => {
         }
     })      
 }
+
+const displayModal = () => {
+
+    modal.show()
+
+}
+
+//Gets rid of Modal 
+
+$(this).on("click", (e) => {
+    if(modal.show()){
+    
+        modal.hide()
+    }
+})
 
 
 });
