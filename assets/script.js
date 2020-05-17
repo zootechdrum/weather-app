@@ -33,6 +33,33 @@ $(document).ready(function () {
                 getUvIndex(result.coord);
             } });
     };
+    var getWeatherIcon = function (id) {
+        if (id >= 800) {
+            console.log("hello");
+            return 'http://openweathermap.org/img/wn/01d@2x.png';
+        }
+        else if (id <= 781 || id >= 701) {
+            return 'http://openweathermap.org/img/wn/50d@2x.png';
+        }
+        else if (id <= 622 || id >= 601) {
+            return 'http://openweathermap.org/img/wn/13d@2x.png';
+        }
+        else if (id <= 531 || id >= 520) {
+            return 'http://openweathermap.org/img/wn/09d@2x.png';
+        }
+        else if (id <= 504 || id >= 500) {
+            return 'http://openweathermap.org/img/wn/10d@2x.png';
+        }
+        else if (id <= 321 || id >= 300) {
+            return 'http://openweathermap.org/img/wn/09d@2x.png';
+        }
+        else if (id <= 232 || id >= 200) {
+            return 'http://openweathermap.org/img/wn/11d@2x.png';
+        }
+        else if (id === 511) {
+            return 'http://openweathermap.org/img/wn/13d@2x.png';
+        }
+    };
     var displayWeather = function (items) {
         //Replace everythin inside of current weather div
         $("#current-weather").empty();
@@ -65,15 +92,18 @@ $(document).ready(function () {
                     foreCast.push(foreCastData[i]);
                 }
                 for (var j = 0; j < foreCast.length; j++) {
+                    console.log(foreCast);
                     var weatherCont = $("#forecast-card-container");
                     var weatherCard = $("<div class='weather-card'>");
                     var day = moment(foreCast[j].dt_txt.split(" ")[0]).format('dddd');
                     //Gets the value for temp while also converting Kelvin to Faren
                     temp = Math.floor(1.8 * (foreCast[j].main.temp - 273) + 32).toString();
                     humidity = foreCast[j].main.humidity.toString();
+                    var weatherImg = $("<img />").attr('src', getWeatherIcon(foreCast[j].weather[0].id));
                     var dayTxt = $("<h4></h4>").text(day);
-                    var tempTxt = $("<p></p>").text("Temp: " + temp);
+                    var tempTxt = $("<p></p>").text("Temp: " + temp + String.fromCharCode(176));
                     var humidTxt = $("<p></p>").text("Humidity: " + humidity + "%");
+                    weatherCard.append(weatherImg);
                     weatherCard.append(dayTxt);
                     weatherCard.append(tempTxt);
                     weatherCard.append(humidTxt);

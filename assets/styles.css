@@ -80,7 +80,7 @@ h1{
   }
 
   #current-weather{
-    background-color: grey;
+    background-color: #A5FFFF;
     padding: 1em;
     min-height: 250px;
   }
@@ -119,7 +119,8 @@ h1{
 }
 
 .weather-card{
+  width: 150px;;
     padding: 0px 10px;
-    background-color: #00B4CC;
+    background-color: #8EBAFF;
     border-radius: 3px;
 }

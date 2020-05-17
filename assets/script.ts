@@ -50,6 +50,27 @@ const currentWeather = (cityName: string) => {
       }});
 }
 
+const getWeatherIcon = (id: number) => {
+    if(id >= 800){
+        console.log("hello")
+        return 'http://openweathermap.org/img/wn/01d@2x.png'
+    }else if(id <= 781 || id >= 701){
+        return 'http://openweathermap.org/img/wn/50d@2x.png'
+    }else if(id <= 622 || id >= 601){
+        return 'http://openweathermap.org/img/wn/13d@2x.png'
+    }else if(id <= 531 || id >= 520){
+        return 'http://openweathermap.org/img/wn/09d@2x.png'
+    }else if(id <= 504 || id >= 500){
+        return 'http://openweathermap.org/img/wn/10d@2x.png'
+    }else if(id <= 321 || id >= 300){
+        return 'http://openweathermap.org/img/wn/09d@2x.png'
+    }else if(id <= 232 || id >= 200){
+        return 'http://openweathermap.org/img/wn/11d@2x.png'
+    } else if(id === 511){
+        return 'http://openweathermap.org/img/wn/13d@2x.png'
+    }
+}
+
 const displayWeather = ( items: {city:string, humidity: number, windSpeed: number, temp: number}) => {
     
     //Replace everythin inside of current weather div
@@ -100,6 +121,9 @@ const forecast = (cityName: string) => {
         }
 
         for(let j = 0; j < foreCast.length; j++){
+            console.log(foreCast)
+
+
             const weatherCont = $("#forecast-card-container")
             const weatherCard = $("<div class='weather-card'>");
             const day = moment(foreCast[j].dt_txt.split(" ")[0]).format('dddd')
@@ -108,17 +132,19 @@ const forecast = (cityName: string) => {
             //Gets the value for temp while also converting Kelvin to Faren
              temp = Math.floor(1.8 * (foreCast[j].main.temp - 273) + 32).toString();
              humidity = foreCast[j].main.humidity.toString()
+            
+             const weatherImg = $("<img />").attr('src',getWeatherIcon(foreCast[j].weather[0].id))
              const dayTxt = $("<h4></h4>").text(day)
-             const tempTxt = $("<p></p>").text("Temp: " + temp)
+             const tempTxt = $("<p></p>").text("Temp: " + temp+String.fromCharCode(176))
              const humidTxt = $("<p></p>").text("Humidity: " + humidity + "%")
 
+             weatherCard.append(weatherImg)
              weatherCard.append(dayTxt)
              weatherCard.append(tempTxt)
              weatherCard.append(humidTxt)
              weatherCont.append(weatherCard)
             
         }
-        
        }
     })
 }
@@ -159,4 +185,6 @@ const getUvIndex = (coordinates: {lat:number, lon: number}) => {
         }
     })      
 }
+
+
 });
