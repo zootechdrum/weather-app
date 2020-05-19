@@ -41,28 +41,28 @@ $(document).ready(function () {
     };
     var getWeatherIcon = function (id) {
         if (id >= 800) {
-            return 'http://openweathermap.org/img/wn/01d@2x.png';
+            return 'http://openweathermap.org/img/w/01d.png';
         }
         else if (id <= 781 || id >= 701) {
-            return 'http://openweathermap.org/img/wn/50d@2x.png';
+            return 'http://openweathermap.org/img/w/50d.png';
         }
         else if (id <= 622 || id >= 601) {
-            return 'http://openweathermap.org/img/wn/13d@2x.png';
+            return 'http://openweathermap.org/img/w/13d.png';
         }
         else if (id <= 531 || id >= 520) {
-            return 'http://openweathermap.org/img/wn/09d@2x.png';
+            return 'http://openweathermap.org/img/w/09d.png';
         }
         else if (id <= 504 || id >= 500) {
-            return 'http://openweathermap.org/img/wn/10d@2x.png';
+            return 'http://openweathermap.org/img/w/10d.png';
         }
         else if (id <= 321 || id >= 300) {
-            return 'http://openweathermap.org/img/wn/09d@2x.png';
+            return 'http://openweathermap.org/img/w/09d.png';
         }
         else if (id <= 232 || id >= 200) {
-            return 'http://openweathermap.org/img/wn/11d@2x.png';
+            return 'http://openweathermap.org/img/w/11d.png';
         }
         else if (id === 511) {
-            return 'http://openweathermap.org/img/wn/13d@2x.png';
+            return 'http://openweathermap.org/img/w/13d.png';
         }
     };
     var displayWeather = function (items) {
@@ -88,6 +88,7 @@ $(document).ready(function () {
                 //Clear all of the content from previous searches
                 $("#forecast-card-container").empty();
                 var foreCastData = result.list;
+                console.log(result);
                 //A array full of objects that will hold forecasted data
                 var foreCast = [];
                 var temp;
